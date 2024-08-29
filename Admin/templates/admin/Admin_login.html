@@ -1,0 +1,32 @@
+{% extends 'BaseA.html' %}
+{% block content%}
+  
+
+      <h2>Admin Log-in</h2>
+      <form method="post" action='/adminlogin'>
+        
+        <div class="form-group">
+          <label for="adminname">Name</label>
+          <input type="text" class="form-control" id="adminname" name="adminname">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group">
+          <label for="check">Manage your Managers and Users</label>
+          <select id="check" name="check">
+            <option value="User">User</option>
+            <option value="Manager">Manager</option>
+          </select>
+        </div>
+        <button class="btn btn-md btn-primary" type="submit">Log-in</button>
+        
+      </form>
+      
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'BaseA.html' %}
+{% block content %}
+<h3>Edit User</h3>
+    <form method="post" action="/editedUser/{{objUser.uid}}">
+      <div class="form-group">
+        <h3>ID : {{objUser.uid}}</h3>
+      </div>
+      <div class="form-group">
+        <label for="User">New Name:</label>
+        <input type="text" class="form-control" id="User" value="{{objUser.user}}"name="User">
+      </div>
+      <div class="form-group">
+        <label for="password">New Password:{{objUser.password}}</label>
+        <input type="password" class="form-control" id="password" value="{{objUser.password}}"name="password">
+      </div>
+      <div class="form-group">
+        <label for="email">New Email:{{objUser.email}}</label>
+        <input type="email" class="form-control" id="email" value="{{objUser.email}}"name="email">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Update User</button>
+    </form>
+{% endblock %}

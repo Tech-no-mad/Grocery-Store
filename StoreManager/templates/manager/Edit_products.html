@@ -1,0 +1,33 @@
+{% extends 'BaseM.html'%}
+{% block content%}
+    <div class="container mt-4">
+        <div class="row mx-auto" style="width:45%">
+                <div class="card"style="width:75%">
+                    <div class="card-header">
+                        <h3>Edit Product</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action='/editp/{{objProduct.pid}}'>
+                            <div class="form-group">
+                                <label for="name">Product Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required placeholder="{{objProduct.product}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="unit">Unit</label>
+                                <input type="text" class="form-control" id="unit" name="unit" required placeholder="{{objProduct.unit}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <input type="number" class="form-control" id="price" name="price" step="0.01" required placeholder="{{objProduct.price}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" required placeholder="{{objProduct.quantity}}">
+                            </div>
+                            <button type="submit" class="btn btn-info mt-3 ">Edit Product</button>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

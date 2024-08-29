@@ -1,0 +1,15 @@
+{% extends 'BaseA.html' %}
+{% block content %}
+    <form method="post" action="/deleted">
+      <div class="form-group">
+        <h3> Delete Manager:</h3>
+        <select id="deleted_manager" name="deleted_manager">
+          {% for manager in objManager %} 
+            <option value="{{manager.mid}}">ID : {{manager.mid}} | Name : {{manager.manager}} | Email : {{manager.email}}</option>
+          {% endfor %}
+        </select>
+        <br><br>
+        <button type="submit" class="btn btn-danger">Delete Manager</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'baseU.html' %}
+  {% block content%}
+    <div class="container-fluid">
+        <h2>Thank you {{user.user}} for shopping with us        
+            <div class="col-9 right-justify Main p-4">
+                
+            {% set gtotal = namespace(val = 0)%}
+        
+             {% for item in objCart1 |list  %}    
+           
+              <div class="card">  
+                  <div class="card-body">                            
+                      <h6 class="card-subtitle mb-2 text-muted">Product Catalog </h6>
+                         {% set t = namespace(val = item.price*item.quantity) %}
+                                          <ul class="list-group list-group-flush">
+                                              <li class="list-group-item">Product: {{item.product}}</li>
+                                              <li class="list-group-item">Price: {{item.price}}</li>
+                                              <li class="list-group-item">Quantity: {{item.quantity}}</li>
+                                              <li class="list-group-item" >Total:  {{ item.price *item.quantity }}</li>
+                                              {% set gtotal.val = gtotal.val + t.val %}
+                                          </ul>        
+                  </div>
+              </div>
+                {% endfor %}
+         
+
+          <h4>Your Grand Total: {{gtotal.val}}</h4>
+
+
+    </div><!--container-->
+  {% endblock %}
+  

@@ -1,0 +1,28 @@
+{% extends 'baseM.html' %}
+{% block content%}
+
+
+  <div class="container mt-5">
+    <div align="center">
+      
+        <form action="/create" method="post">
+          <div class="mb-3" style="width:30%">
+            <label for="section" class="form-label">Create Section:</label>
+            <input type="text" class="form-control" id="section" name="section" placeholder="Enter Section">
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary">Create Section</button>
+        </form>
+        <br><br>
+        <h4>Section Managed By You</h4>
+        <ul>
+          {% for mysec in objSection%}
+              <li>{{mysec.section}}</li>
+          {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+
+
+{% endblock %}

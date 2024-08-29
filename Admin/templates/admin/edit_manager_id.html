@@ -1,0 +1,23 @@
+{% extends 'BaseA.html' %}
+{% block content %}
+<h3>Edit Manager</h3>
+    <form method="post" action="/edited/{{objManager.mid}}">
+      <div class="form-group">
+        <h3>ID : {{objManager.mid}}</h3>
+      </div>
+      <div class="form-group">
+        <h3>New Name:</h3>
+        <input type="text" class="form-control" id="manager"value="{{objManager.manager}}"" name="manager">
+      </div>
+      <div class="form-group">
+        <label for="password">New Password:</label>
+        <input type="password" class="form-control" id="password" value="{{objManager.password}}"name="password">
+      </div>
+      <div class="form-group">
+        <label for="email">New Email:</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{objManager.email}}">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Update Manager</button>
+    </form>
+{% endblock %}

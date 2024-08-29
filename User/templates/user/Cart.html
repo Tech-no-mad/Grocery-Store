@@ -1,0 +1,90 @@
+{% extends 'baseU.html' %}
+{% block content %}
+<div class="row">
+    <h4> Cart</h4>
+    <div class="row">
+       
+        <div class="col-12">
+      
+            <form id="mform" method="post" action='/billing'>
+                
+            {% set i=namespace(value=0) %}
+         
+            {% set grand_total=namespace(value=0) %}
+            {% set count = namespace(value = objCart|length) %}
+            {% for item in objCart %}
+                    <div class="row">   
+                        <div class="col-3"> 
+                            Price                  
+                            {{item.product|capitalize}}: <input type="number"  id="price{{i.value}}" name="price{{i.value}}" value="{{item.price}}" readonly>
+                        </div>
+                        
+                        <div class="col-3">
+                            Quantity (between 1 and {{item.max_quantity}}) 
+                            <input  type="number" id="quantity{{i.value}}" min="0" name="quantity{{i.value}}" max="{{item.max_quantity}}" onKeyUp="if(this.value > {{item.max_quantity}}){this.value ='{{item.max_quantity}}';}" value="0" onchange= "javascript:cal({{i.value}},{{count.value}});" >
+                        </div>
+
+                        <div class="col-3">
+                            Total:= ₹<input type="text" name="total" id="total{{i.value}}" value=0>
+                        </div>
+                        
+                        <div class="col-3">            
+                            <a href="/delete/{{item.id}}" class="btn btn-danger">Remove Item</a>                    
+                        </div>
+                        <input type="hidden" value="{{count.value}}" name="count">
+                    </div>
+                    <br>
+                 
+                    {% set i.value=i.value+1 %}
+             
+
+                  
+            {% endfor %}
+            <div class="row" align="right">
+                <div class="col-3">
+                  
+                </div>
+
+                <div class="col-3">
+                   
+                </div>
+
+                <div class="col-3">
+                    Grand Total: <input type="text" value="0" name="grandtotal" id="grandtotal" align="right" readonly >
+                </div>
+            </div>
+            <button class="btn btn-md btn-success" type="submit">Pay Now</button>
+            <a href="/delete" class="btn btn-danger">Remove All</a>  
+        </form>
+      
+        </div>
+        
+        
+    </div>
+</div>
+<script>
+    function cal(i,count){   
+       
+       console.log(document.getElementById("price"+i).value);
+       console.log(document.getElementById("quantity"+i).value);
+       let price=document.getElementById("price"+i).value;
+       let quantity=document.getElementById("quantity"+i).value;
+       let mytotal=Number(price)*Number(quantity);
+      document.getElementById("total"+i).value=Number(price)*Number(quantity);        
+      
+      //document.getElementById("grandtotal").value= Number(document.getElementById("total"+i).value) + Number(document.getElementById("total"+(i+1)).value) ;
+     console.log("count :"+count);
+     gtotal(count)
+    }
+    
+    function gtotal(count)
+    {
+       let x=0; 
+       for(let i =0;i < count ; i++)
+            x=x+Number(document.getElementById("total"+i).value);
+
+
+        document.getElementById("grandtotal").value = x;
+    }
+    </script>
+{% endblock %}

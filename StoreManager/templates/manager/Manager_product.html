@@ -1,0 +1,66 @@
+{% extends 'BaseM.html' %}
+{% block content%}
+<div class="container-fluid">
+    <div class="row mx-auto mt-4" style="width:80%;">   
+        <h3>Creating a Product</h3>
+                {% for sec in obj %}
+                    <div class="card mb-4">
+                       
+                        <div class="card-body">                            
+                            <h5 class="card-title">Category: {{sec.section}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Products </h6>
+                            <div class="row">
+                                {% set flag = namespace(val=0) %}
+                                {% for prod in objP %}                              
+                                   
+                                    {%if sec.sid == prod.sectionid %}
+                                        <div class="col-4 ">
+                                            <div class="card mt-4">
+                                                <div class="card-body">                                                
+                                                    <h6 class="card-title">{{prod.product}}</h6>
+                                                </div>
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item">Unit: {{prod.unit}}</li>
+                                                            <li class="list-group-item">Price: {{prod.price}}</li>
+                                                            <li class="list-group-item">Quantity: {{prod.quantity}}</li>
+                                                        </ul>
+                                                    <div class="card-body">
+                                                        <a href="/createproduct/{{sec.sid}}" class="btn btn-success">Create </a>
+                                                       
+                                                        <a href="/deleteproduct/{{prod.pid}}" class="btn btn-danger">Delete</a>
+
+                                                        <a href="/editproduct/{{prod.pid}}" class="btn btn-info">Edit </a>
+                                                    </div>                                                
+                                            </div>  
+                                        </div>
+                                        {% set  flag.val = 1 %}    
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            
+                            {% if flag.val == 0 %}
+                                {{l}}
+                                <a href="/createproduct/{{sec.sid}}" class="btn btn-success">Create</a>
+                            {% endif%}
+                            <br><br>        
+                            <div class="btn-group">
+                                <form method="post" action="/editsection/{{sec.sid}}">
+                                    <button class="btn btn-info" type="submit">Edit Section</button>
+                                </form>
+                                <form method="post" action="/deletesection/{{sec.sid}}">
+                                    <button   class="btn btn-danger" type="submit">Delete Section</button>
+                                </form>
+                                <form method="post" action="/createsection">
+                                    <button  class="btn btn-success" type="submit">Create Section</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                
+            
+            
+            
+    </div>       
+            
+{% endblock %}

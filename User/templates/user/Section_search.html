@@ -1,0 +1,42 @@
+{% extends 'baseU.html' %}
+  {% block content%}
+    <div class="container-fluid">
+            <div class="col-9 right-justify Main p-4">
+                
+                 
+    
+              <div class="card">  
+                  <div class="card-body">                            
+                      <h5 class="card-title">Category: {{section}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Product Catalog </h6>
+                            {% for prod in objP %}
+                              
+                                  <div class="card">
+                                     
+                                      <div class="card-body">
+                                      <h5 class="card-title">{{prod.product}}</h5>
+                                      </div>
+                                          <ul class="list-group list-group-flush">
+                                              <li class="list-group-item">Unit: {{prod.unit}}</li>
+                                              <li class="list-group-item">Price: {{prod.price}}</li>
+                                              <!--<li class="list-group-item">Total Quantity Avaiable: {{prod.quantity}}</li>-->
+                                          </ul>
+                                      <div class="card-body">
+                                          <a href="/cart/{{prod.pid}}/{{s}}" class="btn btn-success">Add to Cart</a>
+                                          <a href="/display" class="btn btn-info">Go to Cart</a>
+                                      </div>
+                                  </div>
+
+                            {% endfor %}
+                        
+                      <br><br>        
+                  </div>
+              </div>
+          
+      
+                  </div>
+            </div><!--./col-9-->
+        </div><!--./row-->
+    </div><!--container-->
+  {% endblock %}
+  

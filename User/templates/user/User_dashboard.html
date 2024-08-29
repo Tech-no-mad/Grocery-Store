@@ -1,0 +1,52 @@
+{% extends 'baseU.html' %}
+  {% block content%}
+    <div class="container-fluid">
+      <div class="row mx-auto mt-4" style="width:80%;">            
+                 
+            {% for sec in obj %}
+       
+              <div class="card mb-4" >  
+                  <div class="card-body" style="color:blue">                            
+                      <h5 class="card-title">Category: {{sec.section}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Product Catalog </h6>
+                      <div class="row">
+                          {% for prod in objP %}
+                              {%if sec.sid == prod.sectionid %}
+                              <div class="col-4">
+                                  <div class="card mt-4">                                     
+                                      <div class="card-body">
+                                        <h5 class="card-title">{{prod.product}}</h5>
+                                      </div>
+                                          <ul class="list-group list-group-flush">
+                                              <li class="list-group-item">Unit: {{prod.unit}}</li>
+                                              <li class="list-group-item">Price: {{prod.price}}</li>
+                                              <!--<li class="list-group-item">Total Quantity Avaiable: {{prod.quantity}}</li>-->
+                                          </ul>
+                                      <div class="card-body" style="border: none !important;">
+                                        {% if prod.quantity != 0 %}
+                                          <a href="/cart/{{prod.pid}}/{{sec.sid}}" class="btn btn-success">Add to Cart</a>
+                                          <a href="/display" class="btn btn-info">Go to Cart</a>
+                                        {% else %}
+                                        <div style="color:red">
+                                          {{"The product is Out of Stock."}}
+                                        </div>
+                                          {% endif %}
+                                        
+                                      </div>
+                                    </div>
+                                </div>
+                              
+                              {% endif %}
+                              
+                          {% endfor %}
+                        </div>
+                      <br><br>        
+                  </div>
+              </div>
+          
+          {% endfor %}
+
+      </div>
+    </div><!--container-->
+  {% endblock %}
+  
